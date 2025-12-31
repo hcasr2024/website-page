@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Atom, 
-  Wind, 
   Database, 
   Cpu, 
   ArrowRight, 
@@ -15,48 +14,47 @@ import {
   Globe,
   Search,
   DollarSign,
-  Handshake,
-  Factory,
   CheckCircle2,
   FlaskConical,
-  Sparkles,
   UserPlus
 } from 'lucide-react';
 
 // --- Components ---
 
-const FluidMindsLogo = () => (
-  <div className="flex items-center gap-2 group">
-    <div className="relative w-10 h-10 flex items-center justify-center">
-      {/* Updated to point to the specific file requested */}
-      <img 
-        src="FluidMinds Logo.png" 
-        alt="FluidMinds Logo" 
-        className="w-full h-full object-contain"
-        onError={(e) => {
-          // If the image fails to load (common in preview), show fallback
-          e.target.style.display = 'none';
-          e.target.nextSibling.style.display = 'block';
-        }}
-      />
-      {/* Fallback SVG if image fails to load in preview */}
-      <svg className="w-full h-full text-blue-600 drop-shadow-sm hidden" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5C50 5 15 35 15 60C15 80 30 95 50 95C70 95 85 80 85 60C85 35 50 5 50 5Z" className="fill-blue-600 opacity-20" />
-        <path d="M50 15C50 15 25 40 25 60C25 75 35 85 50 85C65 85 75 75 75 60C75 40 50 15 50 15Z" className="fill-teal-500 opacity-40" />
-        <path d="M50 90C72.0914 90 90 72.0914 90 50C90 27.9086 72.0914 10 50 10" stroke="url(#paint0_linear)" strokeWidth="4" strokeLinecap="round" />
-        <defs>
-          <linearGradient id="paint0_linear" x1="50" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#2563EB"/>
-            <stop offset="1" stopColor="#14B8A6"/>
-          </linearGradient>
-        </defs>
-      </svg>
+const FluidMindsLogo = () => {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="flex items-center gap-2 group">
+      <div className="relative w-10 h-10 flex items-center justify-center">
+        {!imgError ? (
+          <img 
+            src="FluidMinds icon.svg" 
+            alt="FluidMinds Logo" 
+            className="w-full h-full object-contain"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          /* Fallback SVG if image fails to load */
+          <svg className="w-full h-full text-blue-600 drop-shadow-sm" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 5C50 5 15 35 15 60C15 80 30 95 50 95C70 95 85 80 85 60C85 35 50 5 50 5Z" className="fill-blue-600 opacity-20" />
+            <path d="M50 15C50 15 25 40 25 60C25 75 35 85 50 85C65 85 75 75 75 60C75 40 50 15 50 15Z" className="fill-teal-500 opacity-40" />
+            <path d="M50 90C72.0914 90 90 72.0914 90 50C90 27.9086 72.0914 10 50 10" stroke="url(#paint0_linear)" strokeWidth="4" strokeLinecap="round" />
+            <defs>
+              <linearGradient id="paint0_linear" x1="50" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#2563EB"/>
+                <stop offset="1" stopColor="#14B8A6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        )}
+      </div>
+      <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-teal-600">
+        FluidMinds
+      </span>
     </div>
-    <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-teal-600">
-      FluidMinds
-    </span>
-  </div>
-);
+  );
+};
 
 const SectionHeading = ({ children, subtitle, align = 'center' }) => (
   <div className={`mb-12 ${align === 'center' ? 'text-center' : 'text-left'}`}>
@@ -513,7 +511,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="max-w-7xl mx-auto px-6 py-6 border-t border-slate-800 text-sm text-slate-500 text-center">
-      &copy; {new Date().getFullYear()} FluidMinds. All rights reserved. Toronto, Canada.
+      &copy; {new Date().getFullYear()} FluidMinds Inc. All rights reserved. Toronto, Canada.
     </div>
   </footer>
 );

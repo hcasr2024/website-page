@@ -29,7 +29,7 @@ const FluidMindsLogo = () => {
       <div className="relative w-10 h-10 flex items-center justify-center">
         {!imgError ? (
           <img 
-            src="FluidMinds icon.svg" 
+            src="FluidMinds icon.png" 
             alt="FluidMinds Logo" 
             className="w-full h-full object-contain"
             onError={() => setImgError(true)}

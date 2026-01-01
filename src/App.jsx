@@ -36,16 +36,36 @@ const FluidMindsLogo = () => {
           />
         ) : (
           /* Fallback SVG if image fails to load */
-          <svg className="w-full h-full text-blue-600 drop-shadow-sm" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 5C50 5 15 35 15 60C15 80 30 95 50 95C70 95 85 80 85 60C85 35 50 5 50 5Z" className="fill-blue-600 opacity-20" />
-            <path d="M50 15C50 15 25 40 25 60C25 75 35 85 50 85C65 85 75 75 75 60C75 40 50 15 50 15Z" className="fill-teal-500 opacity-40" />
-            <path d="M50 90C72.0914 90 90 72.0914 90 50C90 27.9086 72.0914 10 50 10" stroke="url(#paint0_linear)" strokeWidth="4" strokeLinecap="round" />
+          <svg className="w-full h-full drop-shadow-sm" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <linearGradient id="paint0_linear" x1="50" y1="10" x2="50" y2="90" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#2563EB"/>
-                <stop offset="1" stopColor="#14B8A6"/>
+              <linearGradient id="gradLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#0F766E" /> {/* Deep Teal */}
+                <stop offset="100%" stopColor="#0D9488" /> {/* Teal */}
+              </linearGradient>
+              <linearGradient id="gradRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#2DD4BF" /> {/* Light Teal */}
+                <stop offset="100%" stopColor="#10B981" /> {/* Emerald */}
               </linearGradient>
             </defs>
+            
+            {/* Left/Bottom segment of the droplet */}
+            <path 
+              d="M50 15 C 30 15, 15 45, 15 60 C 15 80, 30 95, 50 95 C 60 95, 70 90, 75 80 C 70 85, 55 90, 40 80 C 25 70, 25 50, 45 30 L 50 15 Z" 
+              fill="url(#gradLeft)" 
+            />
+            
+            {/* Right/Top segment of the droplet */}
+            <path 
+              d="M50 5 C 75 5, 85 35, 85 55 C 85 75, 70 85, 60 90 C 70 85, 80 70, 80 55 C 80 35, 65 20, 50 5 Z" 
+              fill="url(#gradRight)" 
+            />
+            
+            {/* Central intersection/negative space implying a core or leaf vein */}
+            <path 
+              d="M50 15 C 55 25, 65 45, 65 60 C 65 70, 60 80, 50 85 C 45 75, 45 60, 50 15 Z" 
+              fill="#FFFFFF" 
+              fillOpacity="0.2"
+            />
           </svg>
         )}
       </div>
@@ -511,7 +531,7 @@ const Footer = () => (
       </div>
     </div>
     <div className="max-w-7xl mx-auto px-6 py-6 border-t border-slate-800 text-sm text-slate-500 text-center">
-      &copy; {new Date().getFullYear()} FluidMinds Inc. All rights reserved. Toronto, Canada.
+      &copy; {new Date().getFullYear()} FluidMinds. All rights reserved. Toronto, Canada.
     </div>
   </footer>
 );
